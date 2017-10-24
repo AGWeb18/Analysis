@@ -12,7 +12,7 @@ from openpyxl import Workbook
 from openpyxl.chart.data_source import NumDataSource, NumData, NumVal, NumRef
 
 #Read the data
-data = pd.read_csv(r"C:\Users\aridding\Excel\Cleveland_Data1.csv", header=0)
+data = pd.read_csv(r"Cleveland_Data1.csv", header=0)
 
 
 #Create a Pivot table by mean score
@@ -33,7 +33,6 @@ clean_pivot = clean_df.pivot_table(index=["Question_ID"],columns=["Clinician_AD_
 count_group = clean_df.groupby(["Clinician_AD_ID"])["Response_ID"].unique()
 clean_pivot = clean_pivot.drop("Response_ID", 1)
 
-#count_group = clean_df.groupby("Clinician_AD_ID")["Response_ID"].count()
 count_dic = {}
 
 for idx, df in count_group.items():
@@ -116,9 +115,7 @@ clin_list = filtered_comments.Clinician_AD_ID.unique()
 
 QA = filtered_comments[["Question", "Comments","Clinician_AD_ID"]]
 
-
 lookup_d = {}
-
 
 #   Create an empty dictionary to append to
 #   Keys are the clinician's name
@@ -180,10 +177,8 @@ for i in range(0, len(clean_pivot.columns)-4):
     temp_df = temp_df.T
 
 
-    
   
     temp_df.insert(0, "Questions", question_result)
-
     temp_df.index = range(1, 1+ len(temp_df))
     
     #   Remove irrelevant questions, rename columns and create a deep copy
