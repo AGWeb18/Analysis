@@ -7,6 +7,7 @@ fuzzy_df = pd.read_csv(file)
 
 df = fuzzy_df["Event"]
 df.replace("([\W+])","",regex=True, inplace=True)
+fuzzy_df["Event"] = df.str.lower()
 
 l= []
 
@@ -22,4 +23,4 @@ fuzzy_df["Distance"] = l
 distance_df = fuzzy_df[["Event","Count","Distance"]]
 
 print(distance_df.head())
-distance_df.to_csv("editdistance_trackingcodes3.csv")
+#distance_df.to_csv("editdistance_trackingcodes3.csv")
