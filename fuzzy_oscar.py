@@ -1,5 +1,3 @@
-from fuzzywuzzy import fuzz
-from fuzzywuzzy import process
 import pandas as pd
 import Levenshtein
 
