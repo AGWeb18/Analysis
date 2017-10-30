@@ -1,6 +1,7 @@
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
 import pandas as pd
+import Levenshtein
 
 file = "tracking_codes4.csv"
 fuzzy_df = pd.read_csv(file)
@@ -14,7 +15,7 @@ l= []
 for i in range(0, len(df)-1):
     curr_row = df[i]
     nxt_row = df[i+1]
-    dist = fuzz.ratio(str(curr_row), str(nxt_row))
+    dist = Levenshtein.distance(str(curr_row), str(nxt_row))
     l.append(dist)
 
 l.append(-999)
