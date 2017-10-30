@@ -23,23 +23,22 @@ l.append(-999)
 fuzzy_df["Distance"] = l
 
 distance_df = fuzzy_df[["Event","Count","Distance"]]
-
-
-# case specific, word matching 
 distance_df = distance_df.iloc[:-1,:]
-frame = distance_df.Event.str.contains(("adj" or "ajd"))
-adj_df = distance_df[frame]
-adj_sum = adj_df.Count.sum()
-print(adj_df)
-print("The count of ADJ events to occur is:" + str(adj_sum))
+tracking_codes = ["adj", "mobs", "6100","bronte"]
+
+def create_df_tracking(df, track_code):
+    track_name = str(track_code) + "-frame"
+    track_count = str(track_code) + "-Count"
+    track_name = df.Event.str.contains(str(track_code))
+    track_count = df[track_name].Count.sum()
+    return "The count of " + str(track_code) + " is: " + str(track_count)
 
 
-frame_mobs = distance_df.Event.str.contains("mobs")
-mobs_df = distance_df[frame_mobs]
-mobs_sum = mobs_df.Count.sum()
-print("=" *40)
-print(mobs_df)
-print("The count of MOBS events to occur is:" + str(mobs_sum))
+
+for i in tracking_codes:
+    output = create_df_tracking(distance_df, i)
+    print(output)
+
 
 
 #distance_df.to_csv("editdistance_trackingcodes3.csv")
