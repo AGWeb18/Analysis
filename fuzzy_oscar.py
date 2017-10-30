@@ -21,5 +21,10 @@ fuzzy_df["Distance"] = l
 
 distance_df = fuzzy_df[["Event","Count","Distance"]]
 
+#   Add legend to categorize the events
+
+distance_df["Grouping"] = ""
+
+
 print(distance_df.head())
 #distance_df.to_csv("editdistance_trackingcodes3.csv")
