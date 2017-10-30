@@ -31,7 +31,8 @@ def create_df_tracking(df, track_code):
     track_count = str(track_code) + "-Count"
     track_name = df.Event.str.contains(str(track_code))
     track_count = df[track_name].Count.sum()
-    return "The count of " + str(track_code) + " is: " + str(track_count)
+    return ("The count of " + str(track_code) + " is: " + str(track_count))
+    
 
 
 
