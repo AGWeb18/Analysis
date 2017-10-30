@@ -1,5 +1,5 @@
 # Analysis
-- Use for all work-related analysis
+- Work-related Python Scripting
 
 #  tracking_codes4.csv -- Details
 - This is the input file to fuzzy_oscar.py
