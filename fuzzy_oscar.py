@@ -20,12 +20,12 @@ fuzzy_df[["Event", "Count"]]
 fuzzy_df = fuzzy_df.iloc[:,1:]
 
 
-    
 
 def create_df_tracking(_df, track_code):
     track_name = _df.Event.str.contains(str(track_code), na=False)
     track_count = _df[track_name].Count.sum()
     return (_df[track_name], "The count of " + str(track_code) + " is: " + str(track_count))
+    
     
 
 
