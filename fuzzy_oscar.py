@@ -9,8 +9,8 @@ import time
 wb = Workbook()
 ws = wb.active
 
-file = "tracking_codes4.csv"
-fuzzy_df = pd.read_csv(file)
+file = r"Input Files - FuzzyMatchGUI/tracking_codes_nov.csv"
+fuzzy_df = pd.read_csv(file, index_col=False)
 df = fuzzy_df["Event"]
 df.replace("([\W+])","",regex=True, inplace=True)
 df.str.strip()
@@ -19,7 +19,7 @@ fuzzy_df["Event"] = df.str.lower()
 fuzzy_df[["Event", "Count"]]
 fuzzy_df = fuzzy_df.iloc[:,1:]
 
-
+root = tk.Tk()
 
 def create_df_tracking(_df, track_code):
     track_name = _df.Event.str.contains(str(track_code), na=False)
@@ -73,6 +73,7 @@ class CountApp(tk.Frame):
     def printSomething(self):
         global temp_output
         temp_output = create_df_tracking(fuzzy_df, self.greeting_var.get())
+        
         label = Label(text= '%s, \n\n %s' % (temp_output[0], temp_output[1]))
         #this creates a new label to the GUI
         label.place(relx=0.5, rely=0.5, anchor='center',bordermode='outside',relheight=0.8, relwidth=0.50)
@@ -82,15 +83,15 @@ class CountApp(tk.Frame):
         #   Append dataframe to xlsx
         for r in dataframe_to_rows(temp_df, index=False, header=True):
             ws.append(r)
-        wb.save("CodeCountExport.xlsx")
+        wb.save("Output Files - FuzzyMatchGUI/CodeCountExport.xlsx")
         label_export = Label(text="Successfully Exported to XLSX to: "+str(os.getcwd()))
         label_export.pack(fill = tk.X, side=tk.BOTTOM)
 
     
-
     def run(self):
         ''' Run the app '''
         self.mainloop()
 
-app = CountApp(tk.Tk())
+
+app = CountApp(root)
 app.run()
