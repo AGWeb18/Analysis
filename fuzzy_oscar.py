@@ -53,11 +53,6 @@ class CountApp(tk.Frame):
                                       "adj", "mobs")
         self.greeting_var.set('adj')
 
-        #   The receipient text entry control and it's StringVar
-#        self.recipient_var = tk.StringVar()
-#        self.recipient = tk.Entry(self,
-#                                  textvariable=self.recipient_var)
-#        self.recipient_var.set('world')
 
         #   The go button
         self.go_button = tk.Button(self, text="Go",
